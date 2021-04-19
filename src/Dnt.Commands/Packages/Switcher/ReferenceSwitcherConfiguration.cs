@@ -70,10 +70,7 @@ namespace Dnt.Commands.Packages.Switcher
             Console.WriteLine($"rp: {restorePath}");
 
             if (!File.Exists(restorePath))
-            {
-                host.WriteMessage($"Restore file '{System.IO.Path.GetFileName(restorePath)}' not found.\n");
-                return c;
-            }
+              return c;
 
             var cr =  JsonConvert.DeserializeObject<RestoreFile>(File.ReadAllText(restorePath));
             c.Restore = cr.Restore;
@@ -96,7 +93,6 @@ namespace Dnt.Commands.Packages.Switcher
                 var json = JsonConvert.SerializeObject(this, Formatting.Indented);
                 File.WriteAllText(Path, json);
             }
-
         }
     }
 }
