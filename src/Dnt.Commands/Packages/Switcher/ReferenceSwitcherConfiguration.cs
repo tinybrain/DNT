@@ -47,8 +47,7 @@ namespace Dnt.Commands.Packages.Switcher
             var dir = System.IO.Path.GetDirectoryName(path);
             var file = System.IO.Path.GetFileNameWithoutExtension(path);
             var ext = System.IO.Path.GetExtension(path);
-            var rp = System.IO.Path.Combine(dir, $"{file}.restore{ext}");
-            return rp;
+            return System.IO.Path.Combine(dir, $"{file}.restore{ext}");
         }
 
         public static ReferenceSwitcherConfiguration Load(string fileName, IConsoleHost host)
@@ -67,8 +66,6 @@ namespace Dnt.Commands.Packages.Switcher
 
             var restorePath = GetRestorePath(c.Path);
 
-            Console.WriteLine($"rp: {restorePath}");
-
             if (!File.Exists(restorePath))
               return c;
 
@@ -82,7 +79,7 @@ namespace Dnt.Commands.Packages.Switcher
         {
             if (UseSeparateRestoreFile)
             {
-                var restore = new RestoreFile { Restore = this.Restore };
+                var restore = new RestoreFile { Restore = Restore };
                 var restorePath = GetRestorePath(Path);
 
                 var json = JsonConvert.SerializeObject(restore, Formatting.Indented);
