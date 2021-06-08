@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net472;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
+    <!-- <TargetFrameworks>net472;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1</TargetFrameworks> -->
+    <TargetFrameworks>net472</TargetFrameworks>
     <RootNamespace>Dnt.Commands</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Product>DotNetTools (DNT)</Product>
@@ -10,7 +11,8 @@
     <Version>1.6.4</Version>
     <Description>Command line tools to manage .NET Core, Standard and SDK-style projects and solutions.</Description>
     <PackageProjectUrl>https://github.com/RSuter/DNT</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/RSuter/DNT/blob/master/LICENSE.md</PackageLicenseUrl>
+    <!-- <PackageLicenseUrl>https://github.com/RSuter/DNT/blob/master/LICENSE.md</PackageLicenseUrl> -->
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Team Tools\Static Analysis Tools\Rule Sets</CodeAnalysisRuleSetDirectories>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NConsole" Version="3.12.6605.26941" />
