@@ -38,7 +38,7 @@ namespace Dnt.Commands.Packages
             return null;
         }
 
-        private static void SwitchToPackages(IConsoleHost host, ReferenceSwitcherConfiguration configuration)
+        public static void SwitchToPackages(IConsoleHost host, ReferenceSwitcherConfiguration configuration)
         {
             var solution = SolutionFile.Parse(configuration.ActualSolution);
             var globalProperties = ProjectExtensions.GetGlobalProperties(Path.GetFullPath(configuration.ActualSolution));
@@ -81,7 +81,7 @@ namespace Dnt.Commands.Packages
             }
         }
 
-        private async Task RemoveProjectsFromSolutionAsync(ReferenceSwitcherConfiguration configuration, IConsoleHost host)
+        public async Task RemoveProjectsFromSolutionAsync(ReferenceSwitcherConfiguration configuration, IConsoleHost host)
         {
             var solution = SolutionFile.Parse(configuration.ActualSolution);
             var projects = new List<string>();
