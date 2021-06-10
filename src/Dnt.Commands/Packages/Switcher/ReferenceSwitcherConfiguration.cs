@@ -9,7 +9,7 @@ namespace Dnt.Commands.Packages.Switcher
     public class ReferenceSwitcherConfiguration
     {
         [JsonIgnore]
-        internal string Path { get; set; }
+        public string Path { get; set; }
 
         [JsonProperty("solution")]
         public string Solution { get; set; }
