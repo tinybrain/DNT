@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Dnt.Commands.Packages.Switcher
 {
-    class SingleOrArrayConverter : JsonConverter
+    public class SingleOrArrayConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
