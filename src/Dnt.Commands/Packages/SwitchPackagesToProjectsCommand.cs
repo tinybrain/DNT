@@ -60,6 +60,9 @@ namespace Dnt.Commands.Packages
             var solution = SolutionFile.Parse(configuration.ActualSolution);
             var globalProperties = ProjectExtensions.GetGlobalProperties(Path.GetFullPath(configuration.ActualSolution));
 
+            var slnfile = Path.GetFileName(configuration.ActualSolution);
+            host.WriteMessage($"[Dnt] {slnfile}\n");
+
             foreach (var solutionProject in solution.ProjectsInOrder)
             {
                 if (solutionProject.ProjectType != SolutionProjectType.SolutionFolder && solutionProject.ProjectType != SolutionProjectType.Unknown)
@@ -76,9 +79,17 @@ namespace Dnt.Commands.Packages
                                 var switchedProjects = SwitchToProject(configuration, solutionProject, projectInformation, packageName, projectPaths, host);
                                 foreach (var s in switchedProjects)
                                 {
+                                    //var slnproj = Path.GetFileName(s.Key);
+                                    //var projref = Path.GetFileName(projectPaths.FirstOrDefault());
+
+                                    //host.WriteMessage($"  {slnproj}\n");
+                                    //host.WriteMessage($"    {packageName} → {projref}\n");
+
+                                    var pkgver = string.IsNullOrEmpty(s.Value) ? $" v{s.Value}" : "";
+
                                     host.WriteMessage("Project " + Path.GetFileName(s.Key) + " packages:\n");
-                                    host.WriteMessage("    " + packageName + " v" + s.Value + "\n    replaced by:\n");
-                                    projectPaths.ForEach(p => host.WriteMessage("    " + Path.GetFileName(p) + "\n"));
+                                    host.WriteMessage("  " + packageName + pkgver + "\n  replaced by:\n");
+                                    projectPaths.ForEach(p => host.WriteMessage("  " + Path.GetFileName(p) + "\n"));
                                 }
                             }
                         }

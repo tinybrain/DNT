@@ -42,6 +42,10 @@ namespace Dnt.Commands.Packages
         {
             var solution = SolutionFile.Parse(configuration.ActualSolution);
             var globalProperties = ProjectExtensions.GetGlobalProperties(Path.GetFullPath(configuration.ActualSolution));
+
+            var slnfile = Path.GetFileName(configuration.ActualSolution);
+            host.WriteMessage($"[Dnt] {slnfile}\n");
+
             var mappedProjectFilePaths = configuration.Mappings.Values
                      .SelectMany(x => x)
                      .Select(p => Path.GetFileName(p))
@@ -66,9 +70,18 @@ namespace Dnt.Commands.Packages
 
                                 if (switchedProjects.Count > 0)
                                 {
+                                    //var slnproj = solutionProject.ProjectName;
+                                    //var projref = Path.GetFileName(projectPaths.FirstOrDefault());
+
+                                    //host.WriteMessage($"  {slnproj}\n");
+                                    //host.WriteMessage($"    {projref} → {packageName}\n");
+
+                                    var pkgver = switchedProjects.First().PackageVersion;
+                                    var pkgvers = string.IsNullOrEmpty(pkgver) ? $" v{pkgver}" : "";
+
                                     host.WriteMessage("Project " + solutionProject.ProjectName + " with project references:\n");
-                                    projectPaths.ForEach(p => host.WriteMessage("    " + Path.GetFileName(p) + "\n"));
-                                    host.WriteMessage("    replaced by package: " + packageName + " v" + switchedProjects.First().PackageVersion + "\n");
+                                    projectPaths.ForEach(p => host.WriteMessage("  " + Path.GetFileName(p) + "\n"));
+                                    host.WriteMessage("  replaced by package: " + packageName + pkgvers + "\n");
                                 }
                             }
                         }
